@@ -135,15 +135,6 @@ uv run uvicorn app.main:app --reload --port 8000
 
 ---
 
-## 简历可写要点（参考）
-
-- 使用 FastAPI 实现多端点 Agent API，区分鉴权层与聊天接入层  
-- 基于 LangGraph 构建 chat ⇄ tool_call 工作流，模型侧 Tool Calling 选工具，节点侧执行  
-- 双层 JWT（用户 / 会话）隔离多用户多会话；Checkpointer + `thread_id` 持久化对话状态  
-- 对接 DeepSeek OpenAI 兼容 API，Prompt 约束资讯场景下的搜索与幻觉行为  
-
----
-
 ## 致谢
 
 上游模板：[wassim249/fastapi-langgraph-agent-production-ready-template](https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template)
