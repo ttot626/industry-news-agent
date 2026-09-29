@@ -9,5 +9,6 @@ from langchain_core.tools.base import BaseTool
 
 from .ask_human import ask_human
 from .duckduckgo_search import duckduckgo_search_tool
+from .fetch_webpage import fetch_webpage
 
-tools: list[BaseTool] = [duckduckgo_search_tool, ask_human]
+tools: list[BaseTool] = [duckduckgo_search_tool, fetch_webpage, ask_human]

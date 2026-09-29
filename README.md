@@ -13,7 +13,8 @@
 | REST 聊天 API | `/chat` 整包返回、`/chat/stream` SSE 流式 |
 | 双层 JWT | 用户 Token（注册/登录）→ 会话 Token（聊天） |
 | LangGraph Agent | `chat` ⇄ `tool_call` 两节点，Command 路由 |
-| Tool Calling | DuckDuckGo 搜索 + Human-in-the-loop（`ask_human`） |
+| Tool Calling | DuckDuckGo 搜索 + 网页正文抓取 + Human-in-the-loop（`ask_human`） |
+| 网页抓取 | `fetch_webpage` 抓原文，弥补搜索摘要信息不足 |
 | 会话持久化 | PostgreSQL Checkpointer + `thread_id` |
 | 中断恢复 | `interrupt` / `resume`（人机确认后续跑） |
 
@@ -124,8 +125,9 @@ uv run uvicorn app.main:app --reload --port 8000
 
 1. **LLM**：默认 DeepSeek（`deepseek-chat` / `deepseek-reasoner`），通过 `OPENAI_BASE_URL` 走兼容接口  
 2. **Agent 人设**：`system.md` 改为行业资讯助手（时效问题强制搜索、中文优先、拒编造）  
-3. **工程脚本**：补充 Windows 启动脚本 `start-windows.ps1`  
-4. **文档**：按「鉴权 → 聊天 → Graph」重写 README，便于复现与面试讲解  
+3. **网页抓取工具**：新增 `fetch_webpage`（httpx 抓取 + 无依赖 HTML 转文本），形成「搜索 → 抓原文 → 综合回答」链路  
+4. **工程脚本**：补充 Windows 启动脚本 `start-windows.ps1`  
+5. **文档**：按「鉴权 → 聊天 → Graph」重写 README，便于复现与面试讲解  
 
 ---
 
